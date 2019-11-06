@@ -10,7 +10,7 @@ fi
 
 readonly url=${1}
 
-for i in {0..100}; do
+for i in {0..300}; do
     name=`sed -ne ${RANDOM}p /usr/share/dict/words`
     curl ${url}?name=${name}
 done
