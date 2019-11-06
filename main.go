@@ -10,6 +10,12 @@ import (
 
 const project = "kaito2"
 
+// User user info
+type User struct {
+	// Name user name
+	Name string `json:"name"`
+}
+
 // Hello just say "Hello"
 func Hello(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
@@ -27,13 +33,14 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 	} else {
 		name = names[0]
 	}
+	user := User{Name: name}
 
 	// Get logger
 	logger := client.Logger("sample-logger-1")
 
 	// logging
 	logger.Log(logging.Entry{
-		Payload:  name,
+		Payload:  user,
 		Severity: logging.Info,
 		Labels:   map[string]string{"bigquery-export-type": "sample"},
 	})
