@@ -16,6 +16,10 @@ gcloud functions deploy Hello --runtime go111 --trigger-http \
     --service-account ${SERVICE_ACCOUNT}
 ```
 
+## TODO
+
+- [ ] 全体の手順
+
 ## References
 
 - [Package logging](https://godoc.org/cloud.google.com/go/logging)
