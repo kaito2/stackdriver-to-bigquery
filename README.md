@@ -4,4 +4,8 @@ Cloud Functions (golang) から zap(zapdriver) で出力したログを BigQuery
 
 ## 環境
 
-## 実行
+## Deploy
+
+```
+gcloud functions deploy Hello --runtime go111 --trigger-http
+```
