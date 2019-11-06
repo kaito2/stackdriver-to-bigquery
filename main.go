@@ -4,11 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"cloud.google.com/go/logging"
 )
-
-const project = "kaito2"
 
 // User user info
 type User struct {
@@ -18,6 +17,8 @@ type User struct {
 
 // Hello just say "Hello"
 func Hello(w http.ResponseWriter, r *http.Request) {
+	project := mustGetenv("PROJECT")
+	
 	ctx := r.Context()
 	// Get logging client
 	client, err := logging.NewClient(ctx, project)
@@ -63,4 +64,12 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 
 	msg := fmt.Sprintf("Hello %s", name)
 	w.Write([]byte(msg))
+}
+
+func mustGetenv(key string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		log.Fatalf("Environment variable named '%s' is empty", key)
+	}
+	return val
 }
